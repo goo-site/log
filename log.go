@@ -51,8 +51,8 @@ func (lg *logger) output(prefix string, s string) {
 
 	now := time.Now().Unix()
 	for _, writer := range lg.writers {
-		s = writer.Format(prefix, now, filepath, line, s)
-		writer.Write(s)
+		outString := writer.Format(prefix, now, filepath, line, s)
+		writer.Write(outString)
 	}
 }
 
