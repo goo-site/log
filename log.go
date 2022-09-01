@@ -20,10 +20,10 @@ type logger struct {
 
 type Writer interface {
 	// 自由设置输出格式
-	format(prefix string, timestamp int64, filepath string, line int, s string) string
+	Format(prefix string, timestamp int64, filepath string, line int, s string) string
 
 	// 将string写入目的io
-	write(s string)
+	Write(s string)
 }
 
 func AddWriter(writer ...Writer) {
@@ -51,8 +51,8 @@ func (lg *logger) output(prefix string, s string) {
 
 	now := time.Now().Unix()
 	for _, writer := range lg.writers {
-		s = writer.format(prefix, now, filepath, line, s)
-		writer.write(s)
+		s = writer.Format(prefix, now, filepath, line, s)
+		writer.Write(s)
 	}
 }
 

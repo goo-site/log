@@ -19,13 +19,13 @@ type FileWriter struct {
 	logFd     *os.File
 }
 
-func (f *FileWriter) format(prefix string, timestamp int64, filepath string, line int, s string) string {
+func (f *FileWriter) Format(prefix string, timestamp int64, filepath string, line int, s string) string {
 	f.logTime = time.Unix(timestamp, 0)
 	filename := path.Base(filepath)
 	return fmt.Sprintf("%s[%s] %s:%d %s\n", prefix, f.logTime.Format("15:04:05"), filename, line, s)
 }
 
-func (f *FileWriter) write(s string) {
+func (f *FileWriter) Write(s string) {
 	// 检查子文件夹
 	f.logSubDir = getSubDir(f.logTime)
 	os.MkdirAll(path.Join(f.logDir, f.logSubDir), os.ModePerm)

@@ -9,7 +9,7 @@ import (
 type ConsoleWriter struct {
 }
 
-func (c *ConsoleWriter) format(prefix string, timestamp int64, filepath string, line int, s string) string {
+func (c *ConsoleWriter) Format(prefix string, timestamp int64, filepath string, line int, s string) string {
 	color := PrefixColor(prefix)
 	filename := path.Base(filepath)
 	s1 := fmt.Sprintf("\033[%d;%dm%s[%s]\033[0m", HighLight, color, prefix, time.Unix(timestamp, 0).Format("15:04:05"))
@@ -18,7 +18,7 @@ func (c *ConsoleWriter) format(prefix string, timestamp int64, filepath string, 
 	return fmt.Sprintf("%s %s %s\n", s1, s2, s3)
 }
 
-func (c *ConsoleWriter) write(s string) {
+func (c *ConsoleWriter) Write(s string) {
 	fmt.Printf("%s", s)
 }
 
