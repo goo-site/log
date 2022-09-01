@@ -12,7 +12,7 @@ type ConsoleWriter struct {
 func (c *ConsoleWriter) Format(prefix string, timestamp int64, filepath string, line int, s string) string {
 	color := PrefixColor(prefix)
 	filename := path.Base(filepath)
-	s1 := fmt.Sprintf("\033[%d;%dm%s[%s]\033[0m", HighLight, color, prefix, time.Unix(timestamp, 0).Format("15:04:05"))
+	s1 := fmt.Sprintf("\033[%d;%dm[%s] [%s]\033[0m", HighLight, color, prefix, time.Unix(timestamp, 0).Format("15:04:05"))
 	s2 := fmt.Sprintf("\033[%d;%d;%dm%s:%d\033[0m", HighLight, UnderLine, color, filename, line)
 	s3 := fmt.Sprintf("\033[%d;%dm%s\033[0m", HighLight, color, s)
 	return fmt.Sprintf("%s %s %s\n", s1, s2, s3)
