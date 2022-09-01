@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"web-log/common"
+	"github.com/goo-site/log/common"
 )
 
 var lg logger = logger{level: common.InfoLevel}
